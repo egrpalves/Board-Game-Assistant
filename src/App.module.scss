@@ -5,6 +5,7 @@
   padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
+  margin-top: calc(env(safe-area-inset-top) + 1rem);
 
   .header {
     text-align: center;
