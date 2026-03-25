@@ -1,0 +1,51 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  text-align: left;
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+    border-color: #2563eb;
+  }
+
+  .iconWrapper {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 0.75rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info {
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0;
+    }
+    span {
+      font-size: 0.85rem;
+      color: #64748b;
+      text-transform: capitalize;
+    }
+  }
+}

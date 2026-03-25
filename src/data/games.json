@@ -1,0 +1,37 @@
+[
+  {
+    "id": "scrabble",
+    "name": "Scrabble",
+    "rules": {
+      "scoringType": "manual",
+      "winCondition": "highest"
+    }
+  },
+  {
+    "id": "uno",
+    "name": "Uno",
+    "rules": {
+      "scoringType": "points_limit",
+      "limit": 500,
+      "winCondition": "lowest"
+    }
+  },
+  {
+    "id": "generic-3-rounds",
+    "name": "Quick 3 Rounds",
+    "rules": {
+      "scoringType": "rounds_limit",
+      "limit": 3,
+      "winCondition": "highest"
+    }
+  },
+  {
+    "id": "flip-7",
+    "name": "Flip 7",
+    "rules": {
+      "scoringType": "points_limit",
+      "limit": 200,
+      "winCondition": "highest"
+    }
+  }
+]

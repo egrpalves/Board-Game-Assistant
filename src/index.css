@@ -1,0 +1,24 @@
+:root {
+  --font-main:
+    system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: #f1f5f9;
+  color: #1e293b;
+  line-height: 1.5;
+  overscroll-behavior-y: contain; /* Evita pull-to-refresh acidental */
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
