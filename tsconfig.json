@@ -15,6 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "composite": true,
+    "declaration": true,
 
     /* Path Aliases - Para manter a Clean Architecture legível */
     "baseUrl": ".",
@@ -28,6 +30,5 @@
       "@styles/*": ["src/styles/*"]
     }
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
 }
