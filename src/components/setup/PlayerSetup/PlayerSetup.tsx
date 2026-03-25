@@ -50,7 +50,6 @@ export const PlayerSetup: React.FC<Props> = ({ game, onCancel }) => {
               value={name}
               placeholder="Nome do jogador"
               onChange={(e) => updateName(index, e.target.value)}
-              autoFocus={index === playerNames.length - 1}
             />
             <button
               className={styles.removeBtn}

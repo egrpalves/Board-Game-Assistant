@@ -1,5 +1,5 @@
 .container {
-  height: 100dvh;
+  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   padding: 1rem;

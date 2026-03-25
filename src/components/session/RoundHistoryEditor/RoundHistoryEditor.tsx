@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useSessionStore } from '../../../store/sessionStore';
-import styles from './RoundHistoryEditor.module.scss';
+import React, { useState } from "react";
+import { useSessionStore } from "../../../store/sessionStore";
+import styles from "./RoundHistoryEditor.module.scss";
 
 interface RoundHistoryEditorProps {
   onClose: () => void;
@@ -16,7 +16,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
     playerId: string;
     round: number;
   } | null>(null);
-  const [editValue, setEditValue] = useState<number | string>('');
+  const [editValue, setEditValue] = useState<number | string>("");
   const [currentRound, setCurrentRound] = useState(selectedRound || 1);
 
   if (!session) return null;
@@ -39,31 +39,31 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
   };
 
   const handleSaveEdit = () => {
-    if (editingCell && editValue !== '') {
+    if (editingCell && editValue !== "") {
       updateRoundScore(
         editingCell.playerId,
         editingCell.round,
-        parseInt(String(editValue)) || 0
+        parseInt(String(editValue)) || 0,
       );
       setEditingCell(null);
-      setEditValue('');
+      setEditValue("");
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSaveEdit();
-    } else if (e.key === 'Escape') {
+    } else if (e.key === "Escape") {
       setEditingCell(null);
-      setEditValue('');
+      setEditValue("");
     }
   };
 
-  const navigateRound = (direction: 'prev' | 'next') => {
+  const navigateRound = (direction: "prev" | "next") => {
     const currentIndex = rounds.indexOf(currentRound);
-    if (direction === 'prev' && currentIndex > 0) {
+    if (direction === "prev" && currentIndex > 0) {
       setCurrentRound(rounds[currentIndex - 1]);
-    } else if (direction === 'next' && currentIndex < rounds.length - 1) {
+    } else if (direction === "next" && currentIndex < rounds.length - 1) {
       setCurrentRound(rounds[currentIndex + 1]);
     }
   };
@@ -77,7 +77,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
           <h2>
             {isSingleRoundMode
               ? `Editar Ronda ${currentRound}`
-              : 'Histórico de Rondas'}
+              : "Histórico de Rondas"}
           </h2>
           <button className={styles.closeBtn} onClick={onClose}>
             ✕
@@ -88,7 +88,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
           <div className={styles.roundNavigation}>
             <button
               className={styles.navBtn}
-              onClick={() => navigateRound('prev')}
+              onClick={() => navigateRound("prev")}
               disabled={rounds.indexOf(currentRound) === 0}
             >
               ← Anterior
@@ -98,7 +98,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
             </span>
             <button
               className={styles.navBtn}
-              onClick={() => navigateRound('next')}
+              onClick={() => navigateRound("next")}
               disabled={rounds.indexOf(currentRound) === rounds.length - 1}
             >
               Próxima →
@@ -128,7 +128,6 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
                       {isEditing ? (
                         <input
                           type="number"
-                          autoFocus
                           value={editValue}
                           onChange={(e) => setEditValue(e.target.value)}
                           onBlur={handleSaveEdit}
@@ -175,7 +174,6 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
                             {isEditing ? (
                               <input
                                 type="number"
-                                autoFocus
                                 value={editValue}
                                 onChange={(e) => setEditValue(e.target.value)}
                                 onBlur={handleSaveEdit}
