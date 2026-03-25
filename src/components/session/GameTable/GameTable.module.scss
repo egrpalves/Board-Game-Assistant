@@ -142,7 +142,7 @@
 
 .actions {
   position: absolute;
-  bottom: 1rem;
+  bottom: calc(env(safe-area-inset-bottom) + 1rem);
   left: 1rem;
   width: calc(100% - 2rem);
   display: flex;
