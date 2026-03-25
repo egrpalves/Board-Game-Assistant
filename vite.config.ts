@@ -23,8 +23,8 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: "Game Board Assistant",
-        short_name: "GBAssist",
+        name: "Board Game Assistant",
+        short_name: "BGAssist",
         description: "Gestor de pontuações offline para jogos de tabuleiro",
         theme_color: "#2563eb",
         background_color: "#f1f5f9",
