@@ -1,14 +1,20 @@
 import React from "react";
 import { useSessionStore } from "../../../store/sessionStore";
 import { GameEngine } from "../../../app/engine";
-import { Game } from "../../../domain/models";
 import styles from "./EndGameModal.module.scss";
+import { useBoardGame } from "../../../hooks/useBoardGame";
 
-export const EndGameModal: React.FC<{ game: Game }> = ({ game }) => {
+export const EndGameModal: React.FC = () => {
   const { session, resetSession } = useSessionStore();
+  const { setSelectedGame } = useBoardGame();
   if (!session) return null;
 
   const totals = GameEngine.calculateTotals(session);
+
+  const handleGoHome = () => {
+    setSelectedGame(null);
+    resetSession();
+  };
 
   return (
     <div className={styles.overlay}>
@@ -42,9 +48,14 @@ export const EndGameModal: React.FC<{ game: Game }> = ({ game }) => {
           <p>Total de Rondas: {session.currentRound - 1}</p>
         </div>
 
-        <button onClick={resetSession} className={styles.closeBtn}>
-          Nova Sessão
-        </button>
+        <div className={styles.actions}>
+          <button onClick={handleGoHome} className={styles.homeBtn}>
+            Escolher outro jogo
+          </button>
+          <button onClick={resetSession} className={styles.closeBtn}>
+            Nova Sessão
+          </button>
+        </div>
       </div>
     </div>
   );

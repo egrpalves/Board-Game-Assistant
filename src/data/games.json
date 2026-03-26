@@ -33,23 +33,5 @@
       "limit": 200,
       "winCondition": "highest"
     }
-  },
-  {
-    "id": "flip-7",
-    "name": "Flip 7",
-    "rules": {
-      "scoringType": "points_limit",
-      "limit": 200,
-      "winCondition": "highest"
-    }
-  },
-  {
-    "id": "flip-7",
-    "name": "Flip 7",
-    "rules": {
-      "scoringType": "points_limit",
-      "limit": 200,
-      "winCondition": "highest"
-    }
   }
 ]
