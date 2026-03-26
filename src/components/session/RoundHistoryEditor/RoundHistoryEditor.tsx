@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSessionStore } from "../../../store/sessionStore";
 import styles from "./RoundHistoryEditor.module.scss";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface RoundHistoryEditorProps {
   onClose: () => void;
@@ -91,7 +92,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
               onClick={() => navigateRound("prev")}
               disabled={rounds.indexOf(currentRound) === 0}
             >
-              ← Anterior
+              <ArrowLeft size={20} />
             </button>
             <span className={styles.roundInfo}>
               Ronda {currentRound} de {rounds.length}
@@ -101,7 +102,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
               onClick={() => navigateRound("next")}
               disabled={rounds.indexOf(currentRound) === rounds.length - 1}
             >
-              Próxima →
+              <ArrowRight size={20} />
             </button>
           </div>
         )}
@@ -196,9 +197,6 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
 
         <div className={styles.footer}>
           <p className={styles.hint}>Clique em qualquer valor para editar</p>
-          <button className={styles.closeButton} onClick={onClose}>
-            Fechar
-          </button>
         </div>
       </div>
     </div>
