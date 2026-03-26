@@ -5,7 +5,8 @@
     "rules": {
       "scoringType": "manual",
       "winCondition": "highest"
-    }
+    },
+    "icon": "scrabble.png"
   },
   {
     "id": "uno",
@@ -32,6 +33,17 @@
       "scoringType": "points_limit",
       "limit": 200,
       "winCondition": "highest"
-    }
+    },
+    "icon": "flip7.png"
+  },
+  {
+    "id": "quick-stop",
+    "name": "Quick Stop",
+    "rules": {
+      "scoringType": "points_limit",
+      "limit": 40,
+      "winCondition": "lowest"
+    },
+    "icon": "quick_stop.png"
   }
 ]

@@ -8,6 +8,7 @@ export interface Game {
     limit?: number;
     winCondition: "highest" | "lowest";
   };
+  icon?: string;
 }
 
 export interface Player {

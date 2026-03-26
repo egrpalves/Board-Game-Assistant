@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./GameSelector.module.scss";
-import { Trophy, Hash, Target } from "lucide-react";
+import { Hash, Target } from "lucide-react";
 import { Game } from "@domain/models";
 
 interface Props {
@@ -12,11 +12,11 @@ export const GameSelector: React.FC<Props> = ({ games, onSelect }) => {
   const getIcon = (type: string) => {
     switch (type) {
       case "points_limit":
-        return <Target size={20} />;
+        return <Target size={30} />;
       case "rounds_limit":
-        return <Hash size={20} />;
+        return <Hash size={30} />;
       default:
-        return <Trophy size={20} />;
+        return <img src={`src/assets/${type}`} style={{ width: "30px" }} />;
     }
   };
 
@@ -29,7 +29,7 @@ export const GameSelector: React.FC<Props> = ({ games, onSelect }) => {
           onClick={() => onSelect(game)}
         >
           <div className={styles.iconWrapper}>
-            {getIcon(game.rules.scoringType)}
+            {getIcon(game.icon ?? game.rules.scoringType)}
           </div>
           <div className={styles.info}>
             <h3>{game.name}</h3>
