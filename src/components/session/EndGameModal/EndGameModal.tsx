@@ -1,10 +1,11 @@
 import React from "react";
 import { useSessionStore } from "../../../store/sessionStore";
 import { GameEngine } from "../../../app/engine";
+import { Game } from "../../../domain/models";
 import styles from "./EndGameModal.module.scss";
 import { useBoardGame } from "../../../hooks/useBoardGame";
 
-export const EndGameModal: React.FC = () => {
+export const EndGameModal: React.FC<{ game: Game }> = ({ game }) => {
   const { session, resetSession } = useSessionStore();
   const { setSelectedGame } = useBoardGame();
   if (!session) return null;
