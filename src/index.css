@@ -1,11 +1,21 @@
 html,
-body,
-#root {
+body {
   --font-main:
     system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
   height: calc(100dvh - env(safe-area-inset-bottom));
+}
+
+body {
+  height: 100%;
   overflow: hidden;
   margin-top: env(safe-area-inset-top);
+}
+
+#root {
+  height: 100%;
 }
 
 * {
