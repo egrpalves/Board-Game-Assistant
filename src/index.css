@@ -5,6 +5,7 @@ body,
     system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   height: calc(100dvh - env(safe-area-inset-bottom));
   overflow: hidden;
+  margin-top: env(safe-area-inset-top);
 }
 
 * {
