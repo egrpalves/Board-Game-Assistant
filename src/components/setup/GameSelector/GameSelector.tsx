@@ -16,7 +16,7 @@ export const GameSelector: React.FC<Props> = ({ games, onSelect }) => {
       case "rounds_limit":
         return <Hash size={30} />;
       default:
-        return <img src={`src/assets/${type}`} style={{ width: "30px" }} />;
+        return <img src={`assets/games/${type}`} style={{ width: "30px" }} />;
     }
   };
 
