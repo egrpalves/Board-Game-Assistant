@@ -61,15 +61,16 @@ export const PlayerSetup: React.FC<Props> = ({ game, onCancel }) => {
           </div>
         ))}
       </div>
-
-      <button className={styles.addBtn} onClick={addPlayer}>
-        <Plus size={20} /> Adicionar Jogador
-      </button>
-
-      <div className={styles.footerActions}>
-        <button className={styles.startBtn} onClick={handleStart}>
-          <Play size={20} fill="currentColor" /> Começar Jogo
+      <div className={styles.actions}>
+        <button className={styles.addBtn} onClick={addPlayer}>
+          <Plus size={20} /> Adicionar Jogador
         </button>
+
+        <div className={styles.footerActions}>
+          <button className={styles.startBtn} onClick={handleStart}>
+            <Play size={20} fill="currentColor" /> Começar Jogo
+          </button>
+        </div>
       </div>
     </div>
   );

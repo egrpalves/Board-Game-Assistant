@@ -3,6 +3,7 @@
   grid-template-columns: 1fr;
   gap: 1rem;
   width: 100%;
+  overflow: scroll;
 
   @media (min-width: 600px) {
     grid-template-columns: 1fr 1fr;

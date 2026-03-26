@@ -2,8 +2,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   background-color: rgba(15, 23, 42, 0.85); // Slate-900 com opacidade
   display: flex;
   align-items: center;
@@ -12,20 +10,22 @@
   padding: 1.5rem;
   backdrop-filter: blur(4px); // Efeito moderno de vidro
   overflow: hidden;
+  height: 100dvh;
+  width: 100dvw;
 }
 
 .content {
   position: relative;
   background: white;
   border-radius: 24px;
-  padding: 2rem;
-  padding-top: 0;
+  padding: 1rem;
   text-align: center;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   animation: scaleUp 0.3s ease-out;
   height: 90dvh;
   width: 90dvw;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     font-size: 2rem;
@@ -44,12 +44,14 @@
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 2rem;
+  overflow: scroll;
+  flex: 1;
 }
 
 .resultItem {
   display: flex;
   align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   background: #f8fafc;
   border-radius: 16px;
   border: 2px solid #e2e8f0;
@@ -57,7 +59,6 @@
   &.winner {
     background: #fefce8;
     border-color: #facc15;
-    transform: scale(1.02);
     box-shadow: 0 4px 6px -1px rgba(250, 204, 21, 0.2);
   }
 

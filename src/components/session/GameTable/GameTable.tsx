@@ -5,7 +5,6 @@ import { GameEngine } from "../../../app/engine";
 import { RoundHistoryEditor } from "../RoundHistoryEditor/RoundHistoryEditor";
 import styles from "./GameTable.module.scss";
 import { EndGameModal } from "../EndGameModal/EndGameModal";
-import { History } from "lucide-react";
 
 export const GameTable: React.FC<{ game: Game }> = ({ game }) => {
   const { session, submitRound, forceEndGame } = useSessionStore();
