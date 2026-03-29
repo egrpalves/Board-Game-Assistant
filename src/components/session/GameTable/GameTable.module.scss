@@ -8,7 +8,7 @@
 
 .gameInfo {
   position: sticky;
-  top: 1.5rem;
+  top: 0;
   text-align: center;
   background: transparent;
   backdrop-filter: blur(12px);
@@ -17,11 +17,15 @@
   border-radius: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   margin-bottom: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 
   h1 {
     font-size: 1.5rem;
     color: #1e293b;
-    margin-bottom: 0.5rem;
   }
 
   p {
@@ -35,14 +39,18 @@
   }
 }
 
+.roundCounterContainer {
+  border-top: 2px solid #e2e8f0;
+  overflow: scroll;
+  width: 100%;
+  padding-top: 1rem;
+}
+
 .roundCounter {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 2px solid #e2e8f0;
+  width: fit-content;
 }
 
 .roundTab {

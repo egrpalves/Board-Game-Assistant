@@ -45,6 +45,10 @@ export const GameTable: React.FC<{ game: Game }> = ({ game }) => {
     setShowRoundHistory(true);
   };
 
+  const getPlayerTotalScore = (playerId: string) => {
+    return totals.find((t) => t.playerId === playerId)?.total || 0;
+  };
+
   return (
     <div className={styles.wrapper}>
       {showRoundHistory && (
@@ -64,46 +68,60 @@ export const GameTable: React.FC<{ game: Game }> = ({ game }) => {
         </p>
 
         {playedRounds.length > 0 && (
-          <div className={styles.roundCounter}>
-            {playedRounds.map((round) => (
-              <button
-                key={round}
-                className={styles.roundTab}
-                onClick={() => handleRoundClick(round)}
-                title={`Clique para editar ronda ${round}`}
-              >
-                {round}
-              </button>
-            ))}
+          <div className={styles.roundCounterContainer}>
+            <div className={styles.roundCounter}>
+              {playedRounds.map((round) => (
+                <button
+                  key={round}
+                  className={styles.roundTab}
+                  onClick={() => handleRoundClick(round)}
+                  title={`Clique para editar ronda ${round}`}
+                >
+                  {round}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
 
       <div className={styles.scoreGrid}>
-        {session.players.map((player) => (
-          <div key={player.id} className={styles.playerRow}>
-            <div className={styles.playerInfo}>
-              <span className={styles.playerName}>{player.name}</span>
-              <span className={styles.playerTotal}>
-                Total: {totals.find((t) => t.playerId === player.id)?.total} pts
-              </span>
+        {session.players
+          .sort((a, b) => {
+            const playerATotal = getPlayerTotalScore(a.id);
+            const playerBTotal = getPlayerTotalScore(b.id);
+
+            if (playerATotal === playerBTotal) {
+              return a.name.localeCompare(b.name);
+            }
+
+            return playerBTotal - playerATotal;
+          })
+          .map((player) => (
+            <div key={player.id} className={styles.playerRow}>
+              <div className={styles.playerInfo}>
+                <span className={styles.playerName}>{player.name}</span>
+                <span className={styles.playerTotal}>
+                  Total: {totals.find((t) => t.playerId === player.id)?.total}{" "}
+                  pts
+                </span>
+              </div>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  placeholder="Pontos nesta ronda"
+                  value={roundInputs[player.id] || ""}
+                  onChange={(e) =>
+                    setRoundInputs({
+                      ...roundInputs,
+                      [player.id]: parseInt(e.target.value) || 0,
+                    })
+                  }
+                />
+              </div>
             </div>
-            <div className={styles.inputWrapper}>
-              <input
-                type="number"
-                inputMode="numeric"
-                placeholder="Pontos nesta ronda"
-                value={roundInputs[player.id] || ""}
-                onChange={(e) =>
-                  setRoundInputs({
-                    ...roundInputs,
-                    [player.id]: parseInt(e.target.value) || 0,
-                  })
-                }
-              />
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <div className={styles.actions}>
