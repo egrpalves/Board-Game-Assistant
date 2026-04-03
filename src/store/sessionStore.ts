@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { Session, Game, Player, ScoreEntry } from '../domain/models';
-import { GameEngine } from '../app/engine';
-import { storage } from '../infrastructure/storage';
+import { create } from "zustand";
+import { Session, Game, Player, ScoreEntry } from "../domain/models";
+import { GameEngine } from "../app/engine";
+import { storage } from "../infrastructure/storage";
 
 interface SessionState {
   session: Session | null;
@@ -38,7 +38,7 @@ export const useSessionStore = create<SessionState>((set, get) => ({
       })),
       scores: [],
       currentRound: 1,
-      status: 'active',
+      status: "active",
     };
 
     set({ session: newSession });
@@ -57,7 +57,7 @@ export const useSessionStore = create<SessionState>((set, get) => ({
         playerId,
         value,
         round: session.currentRound,
-      })
+      }),
     );
 
     const updatedSession: Session = {
@@ -69,11 +69,11 @@ export const useSessionStore = create<SessionState>((set, get) => ({
     // O Rule Engine decide se o jogo acaba aqui
     const { isFinished, winners } = GameEngine.checkGameEnd(
       updatedSession,
-      game
+      game,
     );
 
     if (isFinished) {
-      updatedSession.status = 'finished';
+      updatedSession.status = "finished";
       updatedSession.winners = winners;
     }
 
@@ -114,7 +114,7 @@ export const useSessionStore = create<SessionState>((set, get) => ({
     const { winners } = GameEngine.checkGameEnd(session, game);
     const updated: Session = {
       ...session,
-      status: 'finished',
+      status: "finished",
       winners,
     };
 

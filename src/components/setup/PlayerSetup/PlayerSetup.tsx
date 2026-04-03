@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Game } from "../../../domain/models";
 import { useSessionStore } from "../../../store/sessionStore";
 import styles from "./PlayerSetup.module.scss";
 import { Plus, Trash2, Play } from "lucide-react";
+import { useBoardGame } from "../../../hooks/useBoardGame";
 
 interface Props {
   game: Game;
@@ -11,28 +12,25 @@ interface Props {
 
 export const PlayerSetup: React.FC<Props> = ({ game, onCancel }) => {
   const { createSession } = useSessionStore();
-  const [playerNames, setPlayerNames] = useState<string[]>([
-    "Jogador 1",
-    "Jogador 2",
-  ]);
+  const { players, setPlayers } = useBoardGame();
 
   const addPlayer = () =>
-    setPlayerNames([...playerNames, `Jogador ${playerNames.length + 1}`]);
+    setPlayers([...players, `Jogador ${players.length + 1}`]);
 
   const removePlayer = (index: number) => {
-    if (playerNames.length > 2) {
-      setPlayerNames(playerNames.filter((_, i) => i !== index));
+    if (players.length > 2) {
+      setPlayers(players.filter((_, i) => i !== index));
     }
   };
 
   const updateName = (index: number, name: string) => {
-    const newNames = [...playerNames];
+    const newNames = [...players];
     newNames[index] = name;
-    setPlayerNames(newNames);
+    setPlayers(newNames);
   };
 
   const handleStart = () => {
-    const validNames = playerNames.filter((n) => n.trim() !== "");
+    const validNames = players.filter((n) => n.trim() !== "");
     if (validNames.length >= 2) {
       createSession(game, validNames);
     }
@@ -43,7 +41,7 @@ export const PlayerSetup: React.FC<Props> = ({ game, onCancel }) => {
       <h2>Quem vai jogar {game.name}?</h2>
 
       <div className={styles.list}>
-        {playerNames.map((name, index) => (
+        {players.map((name, index) => (
           <div key={index} className={styles.inputGroup}>
             <input
               type="text"
@@ -54,7 +52,7 @@ export const PlayerSetup: React.FC<Props> = ({ game, onCancel }) => {
             <button
               className={styles.removeBtn}
               onClick={() => removePlayer(index)}
-              disabled={playerNames.length <= 2}
+              disabled={players.length <= 2}
             >
               <Trash2 size={18} />
             </button>
