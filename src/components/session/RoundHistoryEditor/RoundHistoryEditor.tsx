@@ -40,7 +40,7 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
   };
 
   const handleSaveEdit = () => {
-    if (editingCell && editValue !== "") {
+    if (editingCell) {
       updateRoundScore(
         editingCell.playerId,
         editingCell.round,
@@ -128,9 +128,15 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
                     <div className={styles.playerValueContainer}>
                       {isEditing ? (
                         <input
-                          type="number"
+                          type="text"
+                          inputMode="text"
                           value={editValue}
-                          onChange={(e) => setEditValue(e.target.value)}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "" || /^-?\d*$/.test(val)) {
+                              setEditValue(val);
+                            }
+                          }}
                           onBlur={handleSaveEdit}
                           onKeyDown={handleKeyDown}
                           className={styles.editInput}
@@ -174,9 +180,15 @@ export const RoundHistoryEditor: React.FC<RoundHistoryEditorProps> = ({
                           <div className={styles.playerScoreRow}>
                             {isEditing ? (
                               <input
-                                type="number"
+                                type="text"
+                                inputMode="text"
                                 value={editValue}
-                                onChange={(e) => setEditValue(e.target.value)}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  if (val === "" || /^-?\d*$/.test(val)) {
+                                    setEditValue(val);
+                                  }
+                                }}
                                 onBlur={handleSaveEdit}
                                 onKeyDown={handleKeyDown}
                                 className={styles.editInput}

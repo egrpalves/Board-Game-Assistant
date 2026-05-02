@@ -8,7 +8,7 @@ import { EndGameModal } from "../EndGameModal/EndGameModal";
 
 export const GameTable: React.FC<{ game: Game }> = ({ game }) => {
   const { session, submitRound, forceEndGame } = useSessionStore();
-  const [roundInputs, setRoundInputs] = useState<Record<string, number>>({});
+  const [roundInputs, setRoundInputs] = useState<Record<string, string>>({});
   const [showRoundHistory, setShowRoundHistory] = useState(false);
   const [selectedRound, setSelectedRound] = useState<number | undefined>();
 
@@ -31,7 +31,7 @@ export const GameTable: React.FC<{ game: Game }> = ({ game }) => {
     const scores = session.players.reduce(
       (acc, p) => ({
         ...acc,
-        [p.id]: roundInputs[p.id] || 0,
+        [p.id]: parseInt(roundInputs[p.id] || "0") || 0,
       }),
       {},
     );
@@ -108,16 +108,19 @@ export const GameTable: React.FC<{ game: Game }> = ({ game }) => {
               </div>
               <div className={styles.inputWrapper}>
                 <input
-                  type="number"
-                  inputMode="numeric"
+                  type="text"
+                  inputMode="text"
                   placeholder="Pontos nesta ronda"
                   value={roundInputs[player.id] || ""}
-                  onChange={(e) =>
-                    setRoundInputs({
-                      ...roundInputs,
-                      [player.id]: parseInt(e.target.value) || 0,
-                    })
-                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "" || /^-?\d*$/.test(val)) {
+                      setRoundInputs({
+                        ...roundInputs,
+                        [player.id]: val,
+                      });
+                    }
+                  }}
                 />
               </div>
             </div>
